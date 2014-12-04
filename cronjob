@@ -1,0 +1,8 @@
+#!/bin/sh -
+
+DIRNAME=`dirname $0`
+
+$DIRNAME/shibboleth-analyze.pl /var/log/shibboleth/idp-audit.log -yaml | $DIRNAME/differ.pl -d --period=9 >/tmp/shibboleth-analyze.out 2>&1
+
+$DIRNAME/yaml2table.pl /tmp/differ-output > /tmp/shib-snmp-table
+
